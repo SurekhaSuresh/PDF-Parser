@@ -1,7 +1,7 @@
 import io
 import os
 import datetime
-from pdfminer.converter import HTMLConverter, XMLConverter, PDFPageAggregator
+from pdfminer.converter import HTMLConverter
 from pdfminer.layout import LAParams
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
@@ -12,14 +12,7 @@ import re
 import pytesseract
 from pdf2image import convert_from_path
 import PyPDF2
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-from pdfminer.pdfpage import PDFPage
-from pdfminer.converter import HTMLConverter
-from pdfminer.layout import LAParams, LTTextLineHorizontal, LTTextLineVertical, LTTextLine, LTTextBoxHorizontal
-from pdfminer.pdfdocument import PDFTextExtractionNotAllowed
 from pdfminer.pdfparser import PDFSyntaxError
-
-
 
 def pdftohtml(pdf_file):
     current_time = currentTime()
@@ -313,8 +306,6 @@ def htmltocsv(html_file_name):
     df = df[df['Text'].notna()]
 
     df = df[["Crawl_datetime","Topic","Categ","Sub_cat","Text"]]
-
-
 
     for i, row in df.iterrows():
         processed_text = fix_unordered_lists(str(row['Text']))
